@@ -1,0 +1,15 @@
+## flake8
+
+pip install flake8
+flake8 my_script.py
+
+## black
+
+pip install black
+black my_script.py
+
+## isort - formatter for the imports section
+
+pip install isort
+isort my_script.py
+
