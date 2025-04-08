@@ -26,5 +26,39 @@ def delete_registry(connection, cursor, id):
     cursor.execute("DELETE FROM clientes WHERE id=?;", data)
     connection.commit()
 
+def insert_many(connection, cursor, data):
+    cursor.executemany("INSERT INTO clientes (nome, email) VALUES (?,?)", data)
+    connection.commit()
+
+def recover_client(cursor, id):
+    cursor.execute("SELECT * FROM clientes WHERE id=?", (id,))
+    return cursor.fetchone()
+
+
+def list_clients(cursor):
+    return cursor.execute("SELECT * FROM clientes")
+
+
+cliente = recover_client(cursor, 2)
+print(cliente)
+
+clientes = list_clients(cursor)
+for cliente in clientes:
+    print(cliente)
+
+
+
+
+
+# data = [
+#    ("John", "john123@gmail.com"),
+#    ("Carrie", "carrie321@gmail.com"),
+#    ("Lena", "lena12@gmail.com"),
+#   ]
+
+
+
+# insert_many(connection, cursor, data)
+
 # update_registry(connection, cursor, "John Bonham", "johnled@gmail.com", 1)
-delete_registry(connection, cursor, 1)
+# delete_registry(connection, cursor, 1)
