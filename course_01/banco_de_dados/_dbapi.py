@@ -31,20 +31,25 @@ def insert_many(connection, cursor, data):
     connection.commit()
 
 def recover_client(cursor, id):
+    cursor.row_factory = sqlite3.Row
     cursor.execute("SELECT * FROM clientes WHERE id=?", (id,))
     return cursor.fetchone()
 
 
 def list_clients(cursor):
-    return cursor.execute("SELECT * FROM clientes")
+    return cursor.execute("SELECT * FROM clientes ORDER BY nome DESC")
 
 
-cliente = recover_client(cursor, 2)
-print(cliente)
 
 clientes = list_clients(cursor)
 for cliente in clientes:
     print(cliente)
+
+
+cliente = recover_client(cursor, 2)
+print(dict(cliente))
+print(cliente["id"], cliente["nome"], cliente["email"])
+
 
 
 
