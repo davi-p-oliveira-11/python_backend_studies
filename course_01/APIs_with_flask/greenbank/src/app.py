@@ -5,16 +5,16 @@ app = Flask(__name__)
 
 @app.route("/helloworld/<user>/<int:age>/<float:height>")
 def hello_world(user, age, height):
-  print(age)
-  print(f"Type of the variable age: {type(age)}")
-  print(f"Type of the variable user: {type(user)}")
-  print(f"Type of the variable height: {type(height)}")
-  return f"<h1>Hello, World! user: {user.upper()} </h1>"
+  return {
+    "User": str(app), 
+    "Age": age, 
+    "Height": height, 
+  }
 
 
 @app.route("/welcome")
 def welcome():
-  return "<h1>Welcome ! </h1>"
+  return {"message": "Hello World"}
 
 
 @app.route("/projects/")
