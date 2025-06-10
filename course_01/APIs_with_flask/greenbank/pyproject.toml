@@ -1,0 +1,17 @@
+[project]
+name = "greenbank"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Davi P. Oliveira",email = "dpo.dev11@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "flask"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
