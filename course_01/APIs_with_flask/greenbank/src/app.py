@@ -21,7 +21,7 @@ class User(db.Model):
         return f"User(id={self.id!r}, username={self.username!r})"
   
 
-class Post:
+class Post(db.Model):
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True)
     title: Mapped[str] = mapped_column(sa.String, nullable=False)
     body: Mapped[str] = mapped_column(sa.String, nullable=False)
@@ -52,7 +52,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        SQLALCHEMY_DATABASE_URI="sqlite:///green_bank.sqlite",
+        SQLALCHEMY_DATABASE_URI="sqlite:///blog.sqlite",
     )
 
     if test_config is None:
@@ -73,5 +73,9 @@ def create_app(test_config=None):
 
     # initialize extensions
     db.init_app(app)
- 
+
+    #register blueprints
+    from src.controllers import user
+    
+    app.register_blueprint(user.app)
     return app
